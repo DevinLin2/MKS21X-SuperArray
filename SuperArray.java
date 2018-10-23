@@ -14,7 +14,7 @@ public class SuperArray {
   public boolean isEmpty(){
     return size() == 0;
   }
-  public boolean add(String value){ //(This must be edited later such that: If the capacity is full, you must resize() first.)
+  public boolean add(String value){ //This must be edited later such that: If the capacity is full, you must resize() first.
     data[size()] = value;
   }
   public String toString(){
@@ -27,7 +27,7 @@ public class SuperArray {
     }
     return ans;
   }
-  public String toStringDebug(){
+  public String toStringDebug(){ //Have to finish this later.
     return "";
   }
   public String get(int index){
