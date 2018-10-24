@@ -38,4 +38,14 @@ public class SuperArray {
       return data[index];
     }
   }
+  public String set(int index, String value){
+    String old = data[index];
+    if (index < 0 || index >= size()){
+      return null;
+      System.out.println("Error: index out of range")
+    }else{
+      data[index] = value;
+    }
+    return old;
+  }
 }
