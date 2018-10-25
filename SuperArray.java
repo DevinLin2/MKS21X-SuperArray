@@ -97,6 +97,11 @@ public class SuperArray {
     return -1;
   }
   public int lastIndexOf(String target){
-    return 0;
+    for (int i = size(); i > 0; i--){
+      if (data[i].equals(target)){
+        return i;
+      }
+    }
+    return -1;
   }
 }
