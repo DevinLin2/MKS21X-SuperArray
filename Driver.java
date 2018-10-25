@@ -107,16 +107,22 @@ public class Driver{
 		for (int i = 21; i < 40; i++){
 			Tester.add("filler");
 		}
+		System.out.println(Tester.toStringDebug()); // this should have 40 spaces with no empty spaces
 		System.out.println("This should print 40: " + Tester.size());
 		System.out.println("-----------------------------");
 		System.out.println("Testing Phase 3");
 		// testing contains
 		System.out.println("Testing contains");
 		System.out.println("This should print true: " + Tester.contains("haha"));
+			System.out.println("This should print true: " + Tester.contains("filler"));
 		System.out.println("This should print false: " + Tester.contains("yay"));
 		// testing indexOf and lastIndexOf
 		System.out.println("testing indexOf and lastIndexOf");
 		System.out.println("This should print 10: " + Tester.indexOf("haha"));
 		System.out.println("This should print 20: " + Tester.lastIndexOf("haha"));
+		System.out.println("This should print -1: " + Tester.indexOf("yay"));
+		System.out.println("This should print -1: " + Tester.lastIndexOf("yay"));
+		System.out.println("This should print 0: " + Tester.indexOf("filler"));
+		System.out.println("This should print 39: " + Tester.lastIndexOf("filler"));
 	}
 }
