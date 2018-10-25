@@ -14,26 +14,40 @@ public class SuperArray {
   public boolean isEmpty(){
     return size() == 0;
   }
-  public boolean add(String value){ //This must be edited later such that: If the capacity is full, you must resize() first.
+  public boolean add(String value){
+    if (size() == data.length){
+      resize();
+    }
     data[size()] = value;
+    size ++;
+    return true;
   }
   public String toString(){
     String ans = "[";
     for (int i = 0; i < size(); i++){
       ans += get(i);
       if (i + 1 != size()){
-        ans += ","
+        ans += ",";
       }
     }
+    ans += "]";
     return ans;
   }
-  public String toStringDebug(){ //Have to finish this later.
-    return "";
+  public String toStringDebug(){
+    String ans = "[";
+    for (int i = 0; i < data.length; i++){
+      ans += get(i);
+      if (i + 1 != data.length){
+        ans += ",";
+      }
+    }
+    ans += "]";
+    return ans;
   }
   public String get(int index){
-    if (index < 0 || index >= size()){
+    if (index < 0 || index >= data.length){
+      System.out.println("Error: index out of range");
       return null;
-      System.out.println("Error: index out of range")
     }else{
       return data[index];
     }
@@ -41,11 +55,18 @@ public class SuperArray {
   public String set(int index, String value){
     String old = data[index];
     if (index < 0 || index >= size()){
+      System.out.println("Error: index out of range");
       return null;
-      System.out.println("Error: index out of range")
     }else{
       data[index] = value;
     }
     return old;
+  }
+  private void resize(){
+    String[] newArray = new String[data.length * 2];
+    for (int i = 0; i < size(); i++){
+      newArray[i] = data[i];
+    }
+    data = newArray;
   }
 }
