@@ -108,5 +108,9 @@ public class Driver{
 			resizeTest.add("filler");
 		}
 		System.out.println("This should print 40: " + resizeTest.size());
+		System.out.println("-----------------------------");
+		System.out.println("Testing Phase 3");
+		System.out.println("This should print true: " + resizeTest.contains("haha"));
+		System.out.println("This should print false: " + resizeTest.contains("yay"));
 	}
 }
