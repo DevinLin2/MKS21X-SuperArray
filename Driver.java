@@ -87,30 +87,36 @@ public class Driver{
 		*/
 		System.out.println("-----------------------------");
 		System.out.println("Testing Phase 2");
-		SuperArray resizeTest = new SuperArray();
+		SuperArray Tester = new SuperArray();
 		for (int i = 0; i < 10; i++){
-			resizeTest.add("filler");
+			Tester.add("filler");
 		}
-		System.out.println("size before resize:" + resizeTest.size());
-		resizeTest.add("haha");
-		System.out.println(resizeTest);
-		System.out.println(resizeTest.toStringDebug()); // should have 20 spaces with 9 empty spaces
-		System.out.println("size after resize:" + resizeTest.size());
+		System.out.println("size before resize:" + Tester.size());
+		Tester.add("haha");
+		System.out.println(Tester);
+		System.out.println(Tester.toStringDebug()); // should have 20 spaces with 9 empty spaces
+		System.out.println("size after resize:" + Tester.size());
 		for (int i = 11; i < 20; i++){
-			resizeTest.add("filler");
+			Tester.add("filler");
 		}
-		System.out.println("size before resize:" + resizeTest.size());
-		resizeTest.add("haha");
-		System.out.println(resizeTest);
-		System.out.println(resizeTest.toStringDebug()); // should have 40 spaces with 9 empty spaces
-		System.out.println("size after resize:" + resizeTest.size());
+		System.out.println("size before resize:" + Tester.size());
+		Tester.add("haha");
+		System.out.println(Tester);
+		System.out.println(Tester.toStringDebug()); // should have 40 spaces with 9 empty spaces
+		System.out.println("size after resize:" + Tester.size());
 		for (int i = 21; i < 40; i++){
-			resizeTest.add("filler");
+			Tester.add("filler");
 		}
-		System.out.println("This should print 40: " + resizeTest.size());
+		System.out.println("This should print 40: " + Tester.size());
 		System.out.println("-----------------------------");
 		System.out.println("Testing Phase 3");
-		System.out.println("This should print true: " + resizeTest.contains("haha"));
-		System.out.println("This should print false: " + resizeTest.contains("yay"));
+		// testing contains
+		System.out.println("Testing contains");
+		System.out.println("This should print true: " + Tester.contains("haha"));
+		System.out.println("This should print false: " + Tester.contains("yay"));
+		// testing indexOf and lastIndexOf
+		System.out.println("testing indexOf and lastIndexOf");
+		System.out.println("This should print 10: " + Tester.indexOf("haha"));
+		System.out.println("This should print 20: " + Tester.lastIndexOf("haha"));
 	}
 }
