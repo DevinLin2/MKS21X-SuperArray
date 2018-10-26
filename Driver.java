@@ -130,6 +130,15 @@ public class Driver{
 			AddTester.add("filler");
 		}
 		AddTester.add(6, "haha");
-		System.out.println("this should print [filler,filler,filler,filler,filler,filler,haha,filler,filler,filler,filler]:\n " + AddTester);
+		System.out.println("this should print [filler,filler,filler,filler,filler,filler,haha,filler,filler,filler,filler]:\n " + AddTester.toStringDebug());
+		System.out.println(AddTester.toStringDebug());
+		System.out.println("this should print an error: ");
+		AddTester.add(100,"whoops");
+		System.out.println("testing remove");
+		System.out.println(AddTester.toStringDebug());
+		System.out.println("this should print out haha: " + AddTester.remove(6));
+		System.out.println("this should print an array filled with 10 fillers:\n " + AddTester);
+		System.out.println("this should print an error: ");
+		AddTester.add(100,"whoops");
 	}
 }
