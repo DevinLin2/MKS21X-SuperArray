@@ -124,5 +124,12 @@ public class Driver{
 		System.out.println("This should print -1: " + Tester.lastIndexOf("yay"));
 		System.out.println("This should print 0: " + Tester.indexOf("filler"));
 		System.out.println("This should print 39: " + Tester.lastIndexOf("filler"));
+		System.out.println("testing add with shifting");
+		SuperArray AddTester = new SuperArray();
+		for (int i = 0; i < 10; i++){
+			AddTester.add("filler");
+		}
+		AddTester.add(6, "haha");
+		System.out.println("this should print [filler,filler,filler,filler,filler,filler,haha,filler,filler,filler,filler]:\n " + AddTester);
 	}
 }
