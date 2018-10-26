@@ -107,11 +107,15 @@ public class SuperArray {
   public void add(int index, String value){
     // makes a new array and inserts value at index and shifting everything else to the right down by one.
     boolean inserted = false;
+    if (index < 0 || index > size()){
+      System.out.println("Error: index out of range");
+
+    }
     if (size() == data.length){
       resize();
     }
     String[] newArray = new String[data.length];
-    for (int i = 0; i < size(); i++){
+    for (int i = 0; i < size()+1; i++){
       if (i == index){
         newArray[i] = value;
         inserted = true;
@@ -123,5 +127,27 @@ public class SuperArray {
       }
     }
     data = newArray;
+  }
+  public String remove(int target){
+    boolean removed = false;
+    String gone = "";
+    String[] newArray = new String[data.length];
+    if (target < 0 || target >= size()){
+      System.out.println("Error: index out of range");
+      return null;
+    }
+    for (int i = 0; i < size(); i++){
+      if (i == target){
+        removed = true;
+        gone = data[i];
+      }
+      if (removed){
+        newArray[i] = data[i+1];
+      }else{
+        newArray[i] = data[i];
+      }
+    }
+    data = newArray;
+    return gone;
   }
 }
