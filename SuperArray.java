@@ -30,9 +30,9 @@ public class SuperArray {
   public String toString(){
     // Prints out the filled values of the array
     String ans = "[";
-    for (int i = 0; i < size(); i++){
+    for (int i = 0; i < size()+1; i++){
       ans += get(i);
-      if (i + 1 != size()){
+      if (i + 1 != size()+1){
         ans += ",";
       }
     }
@@ -103,5 +103,25 @@ public class SuperArray {
       }
     }
     return -1;
+  }
+  public void add(int index, String value){
+    // makes a new array and inserts value at index and shifting everything else to the right down by one.
+    boolean inserted = false;
+    if (size() == data.length){
+      resize();
+    }
+    String[] newArray = new String[data.length];
+    for (int i = 0; i < size(); i++){
+      if (i == index){
+        newArray[i] = value;
+        inserted = true;
+      }
+      if (inserted){
+        newArray[i+1] = data[i];
+      }else{
+        newArray[i] = data[i];
+      }
+    }
+    data = newArray;
   }
 }
