@@ -5,6 +5,15 @@ public class SuperArray {
     data = new String[10];
     size = 0;
   }
+  public SuperArray(int capacity){
+    if (capacity < 0){
+      throw new IllegalArgumentException("Parameter Out of Bounds");
+    }
+    else {
+      data = new String[capacity];
+    }
+    size = 0;
+  }
   public void clear(){
     // This resets the size to zero
     size = 0;
@@ -54,8 +63,7 @@ public class SuperArray {
   public String get(int index){
     // Returns the value at the specified index
     if (index < 0 || index >= data.length){
-      System.out.println("Error: index out of range");
-      return null;
+      throw new IndexOutOfBoundsException("Index Out of Bounds");
     }else{
       return data[index];
     }
@@ -65,8 +73,7 @@ public class SuperArray {
     // Returns the old value
     String old = data[index];
     if (index < 0 || index >= size()){
-      System.out.println("Error: index out of range");
-      return null;
+      throw new IndexOutOfBoundsException("Index Out of Bounds");
     }else{
       data[index] = value;
     }
@@ -108,8 +115,7 @@ public class SuperArray {
     // makes a new array and inserts value at index and shifting everything else to the right down by one.
     boolean inserted = false;
     if (index < 0 || index > size()){
-      System.out.println("Error: index out of range");
-
+      throw new IndexOutOfBoundsException("Index Out of Bound");
     }
     if (size() == data.length){
       resize();
@@ -134,8 +140,7 @@ public class SuperArray {
     String gone = "";
     String[] newArray = new String[data.length];
     if (target < 0 || target >= size()){
-      System.out.println("Error: index out of range");
-      return null;
+      throw new IndexOutOfBoundsException("Index Out of Bounds");
     }
     for (int i = 0; i < size(); i++){
       if (i == target){
