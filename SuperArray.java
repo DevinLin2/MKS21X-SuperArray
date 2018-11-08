@@ -12,7 +12,6 @@ public class SuperArray {
     else {
       data = new String[capacity];
     }
-    size = 0;
   }
   public void clear(){
     // This resets the size to zero
@@ -24,24 +23,24 @@ public class SuperArray {
   }
   public boolean isEmpty(){
     // Checks if the array is empty
-    return size() == 0;
+    return size == 0;
   }
   public boolean add(String value){
     // This appends the parameter value to the end of the array
     // If the array needs to be expanded, the length of the array is doubled
-    if (size() == data.length){
+    if (size == data.length){
       resize();
     }
-    data[size()] = value;
+    data[size] = value;
     size ++;
     return true;
   }
   public String toString(){
     // Prints out the filled values of the array
     String ans = "[";
-    for (int i = 0; i < size()+1; i++){
+    for (int i = 0; i < size+1; i++){
       ans += get(i);
-      if (i + 1 != size()+1){
+      if (i + 1 != size+1){
         ans += ",";
       }
     }
@@ -51,6 +50,9 @@ public class SuperArray {
   public String toStringDebug(){
     // Prints out all the values of the array including the null values
     String ans = "[";
+    if (data.length == 0){
+      return null;
+    }
     for (int i = 0; i < data.length; i++){
       ans += get(i);
       if (i + 1 != data.length){
@@ -62,11 +64,10 @@ public class SuperArray {
   }
   public String get(int index){
     // Returns the value at the specified index
-    if (index < 0 || index >= data.length){
+    if (index < 0 || index >= size()){
       throw new IndexOutOfBoundsException("Index Out of Bounds");
-    }else{
-      return data[index];
     }
+    return data[index];
   }
   public String set(int index, String value){
     // Changes the value at the specified index to the new value given in paremeter
@@ -74,21 +75,20 @@ public class SuperArray {
     String old = data[index];
     if (index < 0 || index >= size()){
       throw new IndexOutOfBoundsException("Index Out of Bounds");
-    }else{
-      data[index] = value;
     }
+    data[index] = value;
     return old;
   }
   private void resize(){
     // Doubles the size of the array
     String[] newArray = new String[data.length * 2];
-    for (int i = 0; i < size(); i++){
+    for (int i = 0; i < size; i++){
       newArray[i] = data[i];
     }
     data = newArray;
   }
   public boolean contains(String target){
-    for (int i = 0; i < size()-1; i++){
+    for (int i = 0; i < size; i++){
       if (data[i].equals(target)){
         return true;
       }
@@ -96,7 +96,7 @@ public class SuperArray {
     return false;
   }
   public int indexOf(String target){
-    for (int i = 0; i < size(); i++){
+    for (int i = 0; i < size; i++){
       if (data[i].equals(target)){
         return i;
       }
@@ -114,14 +114,11 @@ public class SuperArray {
   public void add(int index, String value){
     // makes a new array and inserts value at index and shifting everything else to the right down by one.
     boolean inserted = false;
+    String[] newArray = new String[data.length + 1];
     if (index < 0 || index > size()){
       throw new IndexOutOfBoundsException("Index Out of Bound");
     }
-    if (size() == data.length){
-      resize();
-    }
-    String[] newArray = new String[data.length];
-    for (int i = 0; i < size()+1; i++){
+    for (int i = 0; i < size; i++){
       if (i == index){
         newArray[i] = value;
         inserted = true;
@@ -133,16 +130,17 @@ public class SuperArray {
       }
     }
     data = newArray;
+    size ++;
   }
   public String remove(int target){
     // removes the value at target index and returns it. Prints error if index out of range.
     boolean removed = false;
     String gone = "";
-    String[] newArray = new String[data.length];
+    String[] newArray = new String[data.length - 1];
     if (target < 0 || target >= size()){
       throw new IndexOutOfBoundsException("Index Out of Bounds");
     }
-    for (int i = 0; i < size(); i++){
+    for (int i = 0; i < size; i++){
       if (i == target){
         removed = true;
         gone = data[i];
@@ -154,22 +152,15 @@ public class SuperArray {
       }
     }
     data = newArray;
+    size --;
     return gone;
   }
   public boolean remove(String target){
-    boolean removed = false;
-    String[] newArray = new String[data.length];
-    for (int i = 0; i < size(); i++){
-      if (data[i].equals(target)){
-        removed = true;
-      }
-      if (removed){
-        newArray[i] = data[i+1];
-      }else{
-        newArray[i] = data[i];
-      }
+    // uses previous remove method to remove target string.
+    if (indexOf(target) == -1){
+      return false;
     }
-    data = newArray;
-    return removed;
-  }
+    int index = indexOf(test);
+    remove(index);
+    return true;
 }
