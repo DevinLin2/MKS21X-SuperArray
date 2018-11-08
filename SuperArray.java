@@ -11,6 +11,7 @@ public class SuperArray {
     }
     else {
       data = new String[capacity];
+      size = 0;
     }
   }
   public void clear(){
@@ -35,12 +36,19 @@ public class SuperArray {
     size ++;
     return true;
   }
+  public String get(int index){
+    // Returns the value at the specified index
+    if (index < 0 || index >= size()){
+      throw new IndexOutOfBoundsException("Index Out of Bounds");
+    }
+    return data[index];
+  }
   public String toString(){
     // Prints out the filled values of the array
     String ans = "[";
-    for (int i = 0; i < size+1; i++){
+    for (int i = 0; i < size; i++){
       ans += get(i);
-      if (i + 1 != size+1){
+      if (i + 1 != size){
         ans += ",";
       }
     }
@@ -48,26 +56,18 @@ public class SuperArray {
     return ans;
   }
   public String toStringDebug(){
-    // Prints out all the values of the array including the null values
+    // pritns out all the values of array including the null values.
     String ans = "[";
     if (data.length == 0){
       return null;
     }
-    for (int i = 0; i < data.length; i++){
-      ans += get(i);
-      if (i + 1 != data.length){
-        ans += ",";
-      }
+    for(int c = 0; c != data.length - 1; c++){
+      ans = ans + data[c] + ",";
     }
-    ans += "]";
+    ans = ans + data[data.length -1];
+    ans = ans + "]";
     return ans;
-  }
-  public String get(int index){
-    // Returns the value at the specified index
-    if (index < 0 || index >= size()){
-      throw new IndexOutOfBoundsException("Index Out of Bounds");
-    }
-    return data[index];
+
   }
   public String set(int index, String value){
     // Changes the value at the specified index to the new value given in paremeter
@@ -81,7 +81,7 @@ public class SuperArray {
   }
   private void resize(){
     // Doubles the size of the array
-    String[] newArray = new String[data.length * 2];
+    String[] newArray = new String[(data.length * 2)+1];
     for (int i = 0; i < size; i++){
       newArray[i] = data[i];
     }
@@ -125,7 +125,8 @@ public class SuperArray {
       }
       if (inserted){
         newArray[i+1] = data[i];
-      }else{
+      }
+      if (inserted == false){
         newArray[i] = data[i];
       }
     }
@@ -160,7 +161,8 @@ public class SuperArray {
     if (indexOf(target) == -1){
       return false;
     }
-    int index = indexOf(test);
+    int index = indexOf(target);
     remove(index);
     return true;
+  }
 }
